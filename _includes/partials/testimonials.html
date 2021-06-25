@@ -1,0 +1,25 @@
+<div class="w-full flex justify-center pt-12 mb-8">
+    <div class="container ">
+      
+            <div class="toptitle flex  mb-4"> 
+                <div class=" flex items-center px-4"> <svg width="180" height="50" xmlns="http://www.w3.org/2000/svg"> <g> <line id="svg_4" y2="25" x2="180" y1="25" x1="5" stroke-width="4" stroke="#000000" fill="none"/> </g> </svg></div>
+                <div class=" text-xl w-2/3 flex items-center">ΕΙΠΑΝ ΓΙΑ ΕΜΑΣ</div>
+            </div>
+            <div class="title font-bold text-2xl py-4 ">Ευχαριστήριες επιστολές</div>
+            <div class="grid gap-4 grid-cols-3 auto-cols-max w-full grid-rows-1">
+                {% for item in site.data.testimonials %}
+                <div class="border p-8">
+                    <div class="flex flex-inline items-center mb-4 ">
+                        <img class="rounded h-16 w-16" src="{{ item.image}}" alt="testimonila person">
+                        <div class="px-4">{{ item.name}}</div>
+                    </div>
+                    <div>
+                        {{ item.title}}
+                        {{ item.text}}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="{{ "/assets/main.css" | relative_url }}">
+  {%- feed_meta -%}
+  {%- if jekyll.environment == 'production' and site.google_analytics -%}
+    {%- include google-analytics.html -%}
+  {%- endif -%}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.7.1/swiper-bundle.css" integrity="sha512-FYXmtUzyOClEguihWQnAALhcKeYBxtYxDYdceg1uh318TLQF84ets9G5wVDqgmn2pWlP+SRKu94b1yEIJ94o8w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/0.0.0-d782a78/tailwind.min.css" integrity="sha512-+twqxDwke3mCiWrmrTxy5hs1aLpeW/hNk9nb5nz04Ve5gIZHmK8k+Io3xQwE6v9ZwGUyTSNWCApka4GxhPe9JA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>

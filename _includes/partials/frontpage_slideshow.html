@@ -1,0 +1,41 @@
+<!-- Swiper -->
+
+<style>
+    @media only screen and (max-width: 600px) { 
+      .heroslideshow {
+        height: 30vh; }
+      }
+    @media only screen and (min-width: 1440px) { 
+      .heroslideshow {
+        height: 90vh; }
+      }
+      @media only screen and (min-width: 1920px) { 
+      .heroslideshow {
+        height: 100vh; }
+      }
+  </style>
+
+  <div class="heroslideshow swiper-container w-full ">
+  <div class="swiper-wrapper">
+{% for item in site.data.slideshow %}
+<div class="swiper-slide flex-col flex">
+
+    <img src="{{ item.image}}" alt="">
+
+    <div class="px-4 absolute inset-y-2/3 md:ml-8">
+            <a
+            class="flex flex-col w-auto"
+            href="{{ item.url }}"
+            >
+            <div class="w-auto text-5xl bold bg-black bg-opacity-60 text-white px-4 py-4 mb-1">{{ item.title }}</div>
+            <div class="w-auto text-2xl text-yellow-600 bg-black bg-opacity-60 px-4 py-2 ">{{ item.subtitle }}</div>
+        </a>
+    </div>
+</div>
+{% endfor %}
+
+
+  </div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+  </div>
