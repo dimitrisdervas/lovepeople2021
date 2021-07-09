@@ -10,11 +10,37 @@
 
         <div class="bg-blue-300 col-start-2 col-span-1 row-start-1 px-4 py-2 w-48 h-8 flex items-center justify-center self-center">Κάντε μία Δωρεά</div>
         
-        <div class="wrapper col-start-2 col-span-1 row-start-2 flex justify-between items-center h-12">
-            {% for item in site.data.navigation %}
-                <div><a href="{{ item.link }}"></a>{{ item.name }}</div>
-            {% endfor %}
-        </div>
+        {{/*  https://github.com/jan-heise/responsive-navbar-with-dropdown/blob/master/public/navbar.html  */}}
+        <div class="w-full " x-data="{
+        mobile: false
+        }">
+            <div class="flex flex-col  px-4 py-2 mx-auto  mb-6
+            md:items-center md:justify-between md:flex-row  md:mb-0 ">
+                
+                {{/*  MOBILE MENU   */}}
+                <div class="logo flex flex-row items-center justify-between p-4">
+                        <button class="rounded-sm md:hidden focus:outline-none  flex "
+                                @click="mobile = !mobile" >
+                            <span class="text-xl font-bold">
+                                {% if page.lang == "en"%}
+                                Menu
+                                {% else %}
+                                Mενού
+                                {% endif %}
+                            </span>
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
+                            <path x-show="!mobile" fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                            <path x-show="mobile" fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+
+        {% include /partials/header_menu_mobile.html %}
+
+        {% include /partials/header_menu_desktop.html %}
+
+    </div>   
+
     </div>   
 </div>
 </header>

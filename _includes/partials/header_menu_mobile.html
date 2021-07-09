@@ -1,0 +1,83 @@
+<nav  
+x-show="mobile"
+@click.away="mobile = false"
+class="flex-col flex-grow pb-4 md:pb-0 md:flex md:justify-end md:flex-row md:block flex relative  ">
+    {% for link in site.data.navigation %}
+        {% if link.link == page.url %} {% assign class = class | append: " active" %} {% endif %}
+        {% if link.submenu %}
+        {{/* TOP LINKS in MENU   */}}
+        <div @click.away="menu{{ forloop.index}} = false " 
+            class=" flex justify-between md:justify-start items-center items-center " 
+            x-data="{ menu{{ forloop.index}} : false }">
+            <div  @click="menu{{ forloop.index}}  = true"
+                @click.away="menu{{ forloop.index}} = false"
+                    class="md:w-auto font-normal text-left  text-md 
+                        flex flex-inline items-center
+                        hover:text-white text-gray-700 px-4 py-2
+                        hover:text-white focus:text-white 
+                        hover:bg-red-400 focus:bg-red-400
+                        focus:outline-none" >
+                {{ link.name }}
+                <svg fill="currentColor" viewBox="0 0 20 20" class="-rotate-90 inline w-4 h-4 transition-transform duration-200 transform  rotate-0"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+</div>
+
+                {{/*  DRODOWN MENU  Large monitor */}}
+            <div    x-show="menu{{ forloop.index}}" 
+            @click="menu{{ forloop.index}} = true"
+            @click.away="menu{{ forloop.index}} = false"
+                    x-transition:enter="transition ease-out duration-100" 
+                    x-transition:enter-start="transform opacity-0 scale-95" 
+                    x-transition:enter-end="transform opacity-100 scale-100" 
+                    x-transition:leave="transition ease-in duration-75" 
+                    x-transition:leave-start="transform opacity-100 scale-100" 
+                    x-transition:leave-end="transform opacity-0 scale-95" 
+                    class="absolute left-0 top-0 w-full origin-top-right rounded-sm shadow-lg z-30">
+                
+                    <div class="px-2 py-2 bg-gray-100 rounded-sm shadow">
+                        {{/*  BACK BUTTON   */}}
+                        <button class="py-2 w-full text-left hover:bg-gray-100 focus:bg-gray-100 "
+                                @click="menu{{ forloop.index}} = false">
+                            <svg fill="currentColor" viewBox="0 0 20 20" class="rotate-90 inline w-4 h-4 transition-transform duration-200 transform  rotate-0"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                            
+                            {% if page.lang == "en"%}
+                            back
+                            {% else %}
+                            πίσω
+                            {% endif %}
+                        </button>
+                        {{/*  TITLE DROPDOWN   */}}
+                        <a class="  block px-4 py-2 mt-2 
+                                    text-white text-lg bg-red-400 rounded-sm border-gray-300 md:mt-0 
+                                    hover:text-white focus:text-white  
+                                    hover:bg-red-400 focus:bg-red-400
+                                    focus:outline-none "  
+                            href="{{site.baseurl}}{{link.link}}" >
+                            {{ link.name }}</a>
+                        {{/*  SUBMENU LIST   */}}
+                        {% for menu in link.submenu %}
+                            <a class="  block px-4 py-2 mt-2 
+                                        text-gray-700 text-lg bg-gray-100 rounded-sm border-gray-300 md:mt-0 
+                                        hover:text-white focus:text-white  
+                                        hover:bg-red-400 focus:bg-red-400
+                                        focus:outline-none "  href="{{menu.link}}">
+                                {{ menu.name }}</a>
+                        {% endfor %}
+
+                    </div>
+            </div>
+
+        </div>
+        {% else %}
+            <a class="
+            flex  justify-between items-center 
+            px-4 py-2 mt-2 text-md font-normal 
+            bg-transparent rounded-sm 
+            md:mt-0 md:ml-4 
+            text-gray-700
+            border-red-800
+            hover:text-white focus:text-white  
+            hover:bg-red-400 focus:bg-red-400
+            focus:outline-none " href="{{site.baseurl}}{{link.link}}">{{ link.name }}</a>
+        {% endif %}
+    {% endfor %}
+</nav>
